@@ -9,7 +9,7 @@ import Mouse from './Mouse/Mouse.jsx';
       return (
         <div>
           <h1>Move the mouse around!</h1>
-          <Mouse render={ mouse => ( <Cat mouse={mouse} />)}/>
+          <Mouse windows={this.props.windows} render={ mouse => ( <Cat mouse={mouse} />)}/>
         </div>
       );
     }

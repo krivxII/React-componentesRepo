@@ -16,11 +16,16 @@ import {hot} from "react-hot-loader";
       });
     }
 
+    /*componentDidMount() {
+      console.log(this.props.windows);
+      this.props.windows.addEventListener('mousemove',this.handleMouseMove)
+    }*/
+
   
     render() {
       return (
         
-        <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove}>
+        <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove} >
   
           {/*
             Instead of providing a static representation of what <Mouse> renders,
