@@ -1,5 +1,6 @@
 import React, { Component} from "react";
 import {hot} from "react-hot-loader";
+import TemperatureInput from "./TemperatureInput.jsx"
 
 
 function toCelsius(fahrenheit) {
@@ -20,7 +21,7 @@ function BoilingVerdict(props) {
 function tryConvert(temperature, convert) {
   const input = parseFloat(temperature);
   if (Number.isNaN(input)) {
-    return 'NaN';
+    return 'nonono';
   }
   const output = convert(input);
   const rounded = Math.round(output * 1000) / 1000;
@@ -28,41 +29,14 @@ function tryConvert(temperature, convert) {
 }
 
 
-const scaleNames = {
-  c: 'Celsius',
-  f: 'Fahrenheit'
-};
 
-class TemperatureInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {temperature: ''};
-  }
-
-  handleChange(e) {
-    this.props.onTemperatureChange(e.target.value);
-  }
-
-  render() {
-    const temperature = this.props.temperature;
-    const scale = this.props.scale;
-    return (
-      <fieldset>
-        <legend>Enter temperature in {scaleNames[scale]}:</legend>
-        <input value={temperature}
-               onChange={this.handleChange} />
-      </fieldset>
-    );
-  }
-}
 
 class Calculator extends React.Component {
   constructor(props) {
     super(props);
     this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
     this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
-    this.state = {temperature: '', scale: 'c'};
+    this.state = {temperature: "", scale: 'c'};
   }
 
   handleCelsiusChange(temperature) {
