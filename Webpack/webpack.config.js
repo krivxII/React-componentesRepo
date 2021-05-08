@@ -35,8 +35,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist/'),
     clean: true,
    /*  publicPath: "./",da un error en router
+   *   publicPath: "/",  da un erro en local
    */
-    publicPath: "/", 
+   // 
   
   },
 
