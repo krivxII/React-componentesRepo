@@ -6,6 +6,6 @@ import Example from "./Example.js";
   
 
 ReactDOM.render(
-  [ <Example/>,<Example/>],
+  [ <Example key={1}/>,],
     document.getElementById('root')
   );
