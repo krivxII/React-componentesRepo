@@ -1,11 +1,11 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import Example from "./Example.js";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import MyForm from './MyForm.jsx';
 
+ 
 
-  
 
 ReactDOM.render(
-  [ <Example key={1}/>,],
-    document.getElementById('root')
-  );
+ [ <MyForm key={1} />,   ],
+  document.getElementById('root')
+);

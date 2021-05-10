@@ -21,7 +21,7 @@ function Example(props) {
       // Similar to componentDidMount and componentDidUpdate:
       // se activa al montar el componente o re-renderizarlo
       document.title = `You clicked ${count} times`;// Update the document title using the browser API
-      console.log(first)//revisando valor antes de cambiar
+      console.log(first + " 1")//revisando valor antes de cambiar
 
 
       first ?
@@ -35,7 +35,7 @@ function Example(props) {
        * Aunque el set state se ejecute esta seccion se ejecutara en la primera pasada
        */
 
-      console.log(first)// los cambios no ocurren hasta no re-renderizar
+      console.log(first + " 2")// los cambios no ocurren hasta no re-renderizar
 
 
       return () => {
@@ -54,7 +54,7 @@ function Example(props) {
   useEffect(
     () => {
       console.log("esto solo deberia aparecer 1 vez");
-      console.log(first)// los cambios no ocurren hasta no re-renderizar
+      console.log(first + " 3")// los cambios no ocurren hasta no re-renderizar
       SubscribeToFriendStatus(!isOnline, handleStatusChange);
     }
     , x
@@ -64,15 +64,91 @@ function Example(props) {
   function handleStatusChange(status) {
     setIsOnline(status);
   }
+  
+  ///////////////////////////////////////////////////////////
+
+  function useCount(num = 0) {
+    const [count, setCount] = useState(num);
+  
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+  
+
+    let x = [null];
+    useEffect(() => {
+      console.log("test3");
+      return () => {
+        console.log("test32");
+      };
+    });
+    useEffect(() => {
+      console.log("4");
+    },x);
+    let c ={
+      count,
+      setCount
+    };
+
+    return c;
+  }
+let count2 = useCount();
+let count3 = useCount(35);
 
   ////////////////////////////////////////////////////////////
+
+  function useCount2(num = 0) {
+    const [count, setCount] = useState(num);
+  
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+  
+
+    let x = [null];
+    useEffect(() => {
+      console.log("test4");
+      return () => {
+        console.log("test42");
+      };
+    });
+    useEffect(() => {
+      console.log("4");
+    },x);
+
+
+    return (
+
+      <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() =>  setCount(count + 1)}>
+        Click me 1
+      </button>
+      </div>
+    );
+  }
+
+
+
+
+
+  ////////////////////////////////////////////////////////
   return (
     <div>
       <p>You clicked {count}   times</p>
+      <p>You clicked {count2.count}   times</p>
+      <p>You clicked {count3.count}   times</p>
       <p>status {isOnline.toString()}</p>
-      <button onClick={() => { setCount(count + 1) }}>
-        Click me
+      <button onClick={() =>  setCount(count + 1)}>
+        Click me 1
       </button>
+      <button onClick={() => count2.setCount(count2.count+1)}>
+        Click me 2
+      </button>
+      <button onClick={() => count3.setCount(count3.count+1)}>
+        Click me 3
+      </button>
+      {useCount2()}
     </div>
   );
   ///////////////////////////////////////////////////////////

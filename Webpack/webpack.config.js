@@ -2,7 +2,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require("webpack");
 const ESLintPlugin = require('eslint-webpack-plugin');
-const ESLintOpt = require('./.eslintrc.js');
 
 module.exports = {
   /////////////////////////////////////////////////
@@ -37,10 +36,11 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist/'),
     clean: true,
-   /*  publicPath: "./",da un error en router
-   *   publicPath: "/",  da un erro en local
+   /*  publicPath: "./",da un error en router  al refrescar la pagina
+   *   publicPath: "/":  da un erro en local, funciona cuando sirves el archivo desde un servidor
+       publicPath: "": 
    */
-   // 
+   publicPath: "/", 
   
   },
 
