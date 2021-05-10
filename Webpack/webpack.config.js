@@ -15,7 +15,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
-      template: "./src/index.html",
+      template: "./assets/index.html",
       inject: 'body',
     }),
     new webpack.HotModuleReplacementPlugin(),
@@ -53,7 +53,8 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', "@babel/preset-react"]
+            presets: ['@babel/preset-env', "@babel/preset-react"],
+			plugins: ["@babel/plugin-transform-runtime"],
           }
         }
       },

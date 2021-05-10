@@ -14,8 +14,16 @@ const herman = {
       body: raw,
       redirect: 'follow'
     };
-    return await fetch(`https://6fra5t373m.execute-api.eu-west-1.amazonaws.com/development/users/${usuario}`, requestOptions)
-      .then(response => response.text());
+   
+    let resul = await fetch(`https://6fra5t373m.execute-api.eu-west-1.amazonaws.com/development/users/${usuario}`, requestOptions)
+    
+    resul = await resul.text();
+
+    console.log(resul)
+
+    return resul;
+
+
   },
 
 
@@ -29,7 +37,7 @@ class MyForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      username: 'h',
       name: 'asd',
       pass: ''
     };
@@ -37,14 +45,25 @@ class MyForm extends React.Component {
 
 
 
-  myChangeHandler = (e) => {
+  myChangeHandler = async (e) => {
     e.preventDefault();
-    console.log(e.target.us.value,
+    
+   /* console.log(e.target.us.value,
       e.target.name.value,
-      e.target.pass.value)
-    console.log(herman.registrarUsuario(e.target.us.value,
+      e.target.pass.value)*/
+   
+  console.log(this.state.username)
+
+   await this.setState({ username: 'jajaja'})
+
+   console.log(this.state.username)
+
+     /* console.log( await herman.registrarUsuario(e.target.us.value,
       e.target.name.value,
-      e.target.pass.value));
+      e.target.pass.value));*/
+
+
+      
     
   }
 
