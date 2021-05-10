@@ -38,21 +38,21 @@ function useProvideAuth() {
 
 
 
-    const signin = (callback) => 
-    {
-        let fn =() => {
+    const signin = (callback) => {
+        let fn = () => {
             setUser("user");
             callback();
-            };
+        };
 
         return fakeAuth.signin(fn);
     };
 
     const signout = callback => {
-        return fakeAuth.signout(() => {
+        let fn = () => {
             setUser(null);
             callback();
-        });
+        }
+        return fakeAuth.signout(fn);
     };
 
     return {

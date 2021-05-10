@@ -9,6 +9,10 @@ import {
   useLocation
 } from "react-router-dom";
 
+
+
+import ProvideAuth from "./ProvideAuth"
+
 // This example has 3 pages: a public page, a protected
 // page, and a login screen. In order to see the protected
 // page, you must first login. Pretty standard stuff.
