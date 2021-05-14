@@ -7,7 +7,7 @@ module.exports = {
   /////////////////////////////////////////////////
   entry: {
   //index: './src/0ejemplo/index.js',
-  index: './src/1componente/index.js',
+  index: './src/index.js',
    
   
   },

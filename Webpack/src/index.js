@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AuthExample from './AuthExample.jsx';
+//import AuthExample from './AuthExample.jsx';
+import App from './App.jsx';
 
  
 
 
 ReactDOM.render(
- [ <AuthExample key={1} />,   ],
+ [ <App key={1} />,   ],
   document.getElementById('root')
 );
