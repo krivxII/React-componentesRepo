@@ -40,7 +40,7 @@ module.exports = {
    *   publicPath: "/":  da un erro en local, funciona cuando sirves el archivo desde un servidor
        publicPath: "": 
    */
-   publicPath: "/", 
+   publicPath: "./", 
   
   },
 
