@@ -2,7 +2,11 @@
 
 Pagina: https://blog.logrocket.com/a-guide-to-usestate-in-react-ecb9952e406c/
 
-[TOC]
+# Table of Contents
+1. [Introduccion](#Introduccion)
+2. [Una manera de usar el valor previo en setState()](#Una-manera-de-usar-el-valor-previo-en-setState())
+3. [Creando objetos como variables de estado](#Creando-objetos-como-variables-de-estado)
+4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
 
 ---
 ## Introduccion
@@ -91,7 +95,9 @@ Usualmente se usa la **Destructuracion de Arreglos(array destructuring )** para 
 ```
 ---
 
-**Nota:** La funcion set no actualiza el componen al momento, despues de renderizar de nuevo se usara el nuevo estado en vez del usado en useState()
+**Nota:** 
+- La funcion set no actualiza el componen al momento, despues de renderizar de nuevo se usara el nuevo estado en vez del usado en useState()
+- Si la funcion set recive un valor igual al estado actual esta no se ejecuta
 
 ---
 
@@ -102,11 +108,76 @@ Usualmente se usa la **Destructuracion de Arreglos(array destructuring )** para 
 ---
 ## Creando objetos como variables de estado
 
-Dos cosas que tener en cuenta al momento de pensar en usar objetos.
+Dos cosas que tener en cuenta al momento de pensar en usar objetos:
 
--La importancia de la **Inmutabilidad**
+- La importancia de la **Inmutabilidad**
+
+Si usas el mismo valor del **current state** para acualizar el valor, React lo va a ignorar. (React usa `Object.is` para comparar)
+Ejemplo:
+```javascript
+const [messageObj, setMessage] = useState({ message: '' });
+messageObj.message = "some text";
+setMessage(messageObj); // Doesn't work
+```
+Para react **messageObj** sigue siendo exactamente el mismo objeto, para hacer que funcione, se debe crear un nuevo objeto
+
+```javascript
+const [messageObj, setMessage] = useState({ message: '' });
+const newMessageObj = { message: "new text" };
+setMessage(messageObj); // work
+```
+
+
+- El hecho de que useState() no fuciona objetos como setState() lo hace.
+
+En este caso la funcion set reemplaza completamente el objeto antiguo.
+
+Siguiendo el ejemplo anterior agreguemos una valor nuevo en el objeto de estado
+
+```javascript
+const [messageObj, setMessage] = useState({ message: '', id: 1 });
+const newMessageObj = { message: "new text" };
+setMessage(messageObj); // Atributo Id perdido
+```
+Es inportante recordar que useState() solo crea una variable y la ira reemplazando
+
+Para poder replicar la capacidad de setState()  utilizando la funcion de segundo parametro que tiene la propiedad set...() y utilizando **object spread syntax**
+
+```javascript
+const [messageObj, setMessage] = useState({ message: '', id: 1 });
+const val = "new text" ;
+setMessage( (prevState) => {
+    return { ...prevState, message: val }
+  }); 
+```
+De esta forma se crea un objeto nuevo con todas las propiedaes que no fueron actualizadas y se actualiza la propiedad decesada.
+
+(...prevState obtendra todos los atributos)
+
+Esta es una sintaxis opcional con  Object.assign (Solo recuerda crear el objeto nuevo)
+
+```javascript
+const [messageObj, setMessage] = useState({ message: '', id: 1 });
+const val = "new text" ;
+setMessage( (prevState) => {
+    return Object.assign({}, prevState, { message: val });
+  }); 
+```
+De igual manera esta sintaxis funciona con Arreglos.
+
+```javascript
+const [messageList, setMessageList] = useState([]);
+const val = "new text" ;
+setMessage( (prevState) => {
+    return Object.assign({}, prevState, { message: val });
+  }); 
+```
 
 
 ```javascript
    
 ```
+
+
+---
+[Introduccion](#Resumen-de-la-guia-de-useState)
