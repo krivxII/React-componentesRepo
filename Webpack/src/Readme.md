@@ -167,17 +167,77 @@ De igual manera esta sintaxis funciona con Arreglos.
 
 ```javascript
 const [messageList, setMessageList] = useState([]);
-const val = "new text" ;
-setMessage( (prevState) => {
-    return Object.assign({}, prevState, { message: val });
-  }); 
+setMessageList([...messageList,{id: messageList.length + 1,}]
+// Use the current size as ID (needed to iterate the list later)
 ```
+Ahora  hay que ser cuidadosos ya que si el arreglo el arreglo es multidimencional o si el objeto esta anidado esto no funcionara.
 
+## Usando objetos anidados
+
+Ejemplo de arreglo de muchas dimenciones
 
 ```javascript
-   
+[
+  ['value1','value2'],
+  ['value3','value4']
+]
 ```
 
+Podrias usarlo para agrupar todas tus variables de estado pero para ese objetivo es mejor utilizar objetos
+
+```javascript
+{
+  'row1' : {
+    'key1' : 'value1',
+    'key2' : 'value2'
+  },
+  'row2' : {
+    'key3' : 'value3',
+    'key4' : 'value4'
+  }
+}
+```
+Indiferente de la manera de trabajar se tiene que tener en cuenta que al utilizar la Spread Sintax con estos casos creara copias del objeto global pero va a seguir referenciando los objetos internos
+
+Tengamos en cuenta la siguiente estructura
+```javascript
+const [messageObj, setMessage] = useState({
+  author: '',
+  message: {
+    id: 1,
+    text: ''
+  }
+});
+```
+De querer modificar el autor tengo que desconstruir todo message
+
+```javascript
+setMessage(prevState => ({
+  author: 'Joe',          // overwrite the value of the field to update
+  ...prevState.message    // copy all other field/objects
+}));
+```
+De querer modificar el texto
+
+```javascript
+ setMessage(prevState => ({
+  ...prevState,           // copy all other field/objects
+  message: {              // recreate the object that contains the field to update
+    ...prevState.message, // copy all the fields of the object
+    text: 'My message'    // overwrite the value of the field to update
+  }
+}));  
+```
+
+```javascript
+setMessage(prevState => ({
+  author: 'Joe',          // update the value of the field
+  message: {              // recreate the object that contains the field to update
+    ...prevState.message, // copy all the fields of the object
+    text: 'My message'    // overwrite the value of the field to update
+  }
+}));
+```
 
 ---
 [Introduccion](#Resumen-de-la-guia-de-useState)
