@@ -1,243 +1,48 @@
-# Resumen de la guia de useState
-
-Pagina: https://blog.logrocket.com/a-guide-to-usestate-in-react-ecb9952e406c/
-
 # Table of Contents
 1. [Introduccion](#Introduccion)
-2. [Una manera de usar el valor previo en setState()](#Una-manera-de-usar-el-valor-previo-en-setState())
-3. [Creando objetos como variables de estado](#Creando-objetos-como-variables-de-estado)
-4. [Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+2. [Codigo](#Codigo)
+3. [Third Example](#third-example)
 
----
-## Introduccion
+--------------------
+## Listas
 
-Los componentes funcionales son funciones que reciben las propiedades del componente como parametro y retorna un componente.
-A diferencia de las clases los componentes funcionales no poseen ciclo de vida
+#### Unordered list (-)
 
-**useState()**
+- Item A
+- Item B
+- Item C
+     
+####Unordered list (*)
 
-Es un hook que permite tener variables de estado en componentes funcionales
+* Item A
+* Item B
+* Item C
 
-para declararlo y usarlo se importa
+####Unordered list (plus sign and nested)
+                
++ Item A
++ Item B
+    + Item B 1
+    + Item B 2
+    + Item B 3
++ Item C
+    * Item C 1
+    * Item C 2
+    * Item C 3
 
-```javascript
-import React, { useState } from 'react';
-```
-Pero a diferencia de state en las Clases este metodo solo te deja declarar una variable a la vez
+####Ordered list
+                
+1. Item A
+2. Item B
+3. Item C
+                
 
-```javascript
-///////Ejemplo clase
-class Message extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      message: '',
-      list: [],    
-    };
-  }
-  /* ... */
-}
-////////Ejemplo funcion
-const Message= () => {
-   const messageState = useState( '' );
-   const listState = useState( [] );
-   /* ... */
-}
-```
-Esta funcion inicializa la variable con el valor que le pasas como parametro, y solo se ejecuta una vez. Al renderizar de nuevo se obtiene el valor del estado y no de la funcion.
-
-De segundo argumento se le puede pasar una funcion que solo se ejecutara una vez en el render inicial y asignara lo que retorne.
+# Codigo 
 
 ```javascript
-
-   const messageState = useState( () => expensiveComputation() );
-
+   ///js code
 ```
 
-De querer que El componente se actualice con el cambio de propiedades use state no es suficiente ya que este valor solo es leido la primera vez.
-
-
-```javascript
-//si algun valor de props cambia el componente no lo reflejara
-const Message= (props) => {
-   const messageState = useState( props.message );
-   /* ... */
-}
 ```
-
-Para solucionarlo lo puedes complemetar con **useEfect()**
-
-```javascript
-const Persons = (props) =>  {
-   const [messageState , setmessageState] = useState(props)
-
-   useEffect(() => {
-       setmessageState(props);
-   }, [props])
-
- /* ... */
-
-}///falta explicar
+   ///generic code
 ```
-
-Aparte de retornar la variable iniciada, la funcion retorna como segundo argumento una funcion que permite modificar la variable creada y actualizar el estado del componente.
-Ambas variables estan en un arreglo que retorna **useState()** 
-
-```javascript
-   const messageState = useState( '' );
-   const message = messageState[0]; // Contains ''
-   const setMessage = messageState[1]; // It’s a function
-```
-
-Usualmente se usa la **Destructuracion de Arreglos(array destructuring )** para simplificar el codigo
-```javascript
-   const [message, setMessage]= useState( '' );
-```
----
-
-**Nota:** 
-- La funcion set no actualiza el componen al momento, despues de renderizar de nuevo se usara el nuevo estado en vez del usado en useState()
-- Si la funcion set recive un valor igual al estado actual esta no se ejecuta
-
----
-
-## Una manera de usar el valor previo en setState()
-```javascript
-  setMessage(prev => prev + val)
-```
----
-## Creando objetos como variables de estado
-
-Dos cosas que tener en cuenta al momento de pensar en usar objetos:
-
-- La importancia de la **Inmutabilidad**
-
-Si usas el mismo valor del **current state** para acualizar el valor, React lo va a ignorar. (React usa `Object.is` para comparar)
-Ejemplo:
-```javascript
-const [messageObj, setMessage] = useState({ message: '' });
-messageObj.message = "some text";
-setMessage(messageObj); // Doesn't work
-```
-Para react **messageObj** sigue siendo exactamente el mismo objeto, para hacer que funcione, se debe crear un nuevo objeto
-
-```javascript
-const [messageObj, setMessage] = useState({ message: '' });
-const newMessageObj = { message: "new text" };
-setMessage(messageObj); // work
-```
-
-
-- El hecho de que useState() no fuciona objetos como setState() lo hace.
-
-En este caso la funcion set reemplaza completamente el objeto antiguo.
-
-Siguiendo el ejemplo anterior agreguemos una valor nuevo en el objeto de estado
-
-```javascript
-const [messageObj, setMessage] = useState({ message: '', id: 1 });
-const newMessageObj = { message: "new text" };
-setMessage(messageObj); // Atributo Id perdido
-```
-Es inportante recordar que useState() solo crea una variable y la ira reemplazando
-
-Para poder replicar la capacidad de setState()  utilizando la funcion de segundo parametro que tiene la propiedad set...() y utilizando **object spread syntax**
-
-```javascript
-const [messageObj, setMessage] = useState({ message: '', id: 1 });
-const val = "new text" ;
-setMessage( (prevState) => {
-    return { ...prevState, message: val }
-  }); 
-```
-De esta forma se crea un objeto nuevo con todas las propiedaes que no fueron actualizadas y se actualiza la propiedad decesada.
-
-(...prevState obtendra todos los atributos)
-
-Esta es una sintaxis opcional con  Object.assign (Solo recuerda crear el objeto nuevo)
-
-```javascript
-const [messageObj, setMessage] = useState({ message: '', id: 1 });
-const val = "new text" ;
-setMessage( (prevState) => {
-    return Object.assign({}, prevState, { message: val });
-  }); 
-```
-De igual manera esta sintaxis funciona con Arreglos.
-
-```javascript
-const [messageList, setMessageList] = useState([]);
-setMessageList([...messageList,{id: messageList.length + 1,}]
-// Use the current size as ID (needed to iterate the list later)
-```
-Ahora  hay que ser cuidadosos ya que si el arreglo el arreglo es multidimencional o si el objeto esta anidado esto no funcionara.
-
-## Usando objetos anidados
-
-Ejemplo de arreglo de muchas dimenciones
-
-```javascript
-[
-  ['value1','value2'],
-  ['value3','value4']
-]
-```
-
-Podrias usarlo para agrupar todas tus variables de estado pero para ese objetivo es mejor utilizar objetos
-
-```javascript
-{
-  'row1' : {
-    'key1' : 'value1',
-    'key2' : 'value2'
-  },
-  'row2' : {
-    'key3' : 'value3',
-    'key4' : 'value4'
-  }
-}
-```
-Indiferente de la manera de trabajar se tiene que tener en cuenta que al utilizar la Spread Sintax con estos casos creara copias del objeto global pero va a seguir referenciando los objetos internos
-
-Tengamos en cuenta la siguiente estructura
-```javascript
-const [messageObj, setMessage] = useState({
-  author: '',
-  message: {
-    id: 1,
-    text: ''
-  }
-});
-```
-De querer modificar el autor tengo que desconstruir todo message
-
-```javascript
-setMessage(prevState => ({
-  author: 'Joe',          // overwrite the value of the field to update
-  ...prevState.message    // copy all other field/objects
-}));
-```
-De querer modificar el texto
-
-```javascript
- setMessage(prevState => ({
-  ...prevState,           // copy all other field/objects
-  message: {              // recreate the object that contains the field to update
-    ...prevState.message, // copy all the fields of the object
-    text: 'My message'    // overwrite the value of the field to update
-  }
-}));  
-```
-
-```javascript
-setMessage(prevState => ({
-  author: 'Joe',          // update the value of the field
-  message: {              // recreate the object that contains the field to update
-    ...prevState.message, // copy all the fields of the object
-    text: 'My message'    // overwrite the value of the field to update
-  }
-}));
-```
-
----
-[Introduccion](#Resumen-de-la-guia-de-useState)
