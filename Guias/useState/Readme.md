@@ -16,7 +16,6 @@ Los componentes funcionales son funciones que reciben las propiedades del compon
 A diferencia de las clases los componentes funcionales no poseen ciclo de vida
 
 **useState()**
-
 Es un hook que permite tener variables de estado en componentes funcionales
 
 para declararlo y usarlo se importa
