@@ -37,8 +37,6 @@ function Partida(props) {
       let newState = {...SuperState};
       newState.carta1.flip=false;
       newState.carta2.flip=false;
-      newState.carta1 = null;
-      newState.carta2 = null;
       newState.cartasVolteadas=0;
       setSuperState(newState)
     }
@@ -56,9 +54,7 @@ function Partida(props) {
     </pre>
     </span>
     <span>
-    <pre>
-       { JSON.stringify(cartas,null,1)}
-    </pre>
+   
     </span>
     {Object.entries(SuperState.cartas).map( (carta,i) =><button key={i} onClick={()=>{flip(carta)}}>{carta[0]}</button>)}
    
