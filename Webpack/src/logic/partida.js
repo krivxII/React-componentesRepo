@@ -12,8 +12,11 @@ function crearStatePartida(props) {
     let cartas = props.cartas;
     if (typeof props.cartas === 'undefined') {
         cartas = {};
-        for (let i = 0; i <= 15; i++) {
-            cartas[i]= {value: i, flip: 0 };
+        for (let i = 0; i <= 8; i++) {
+            cartas[i]= {id: i, value: i+1, flip: 0 };
+        }
+        for (let i = 8; i <= 15; i++) {
+            cartas[i]= {id: i, value: i-7, flip: 0 };
         }
     }
     ///
@@ -37,6 +40,18 @@ function crearStatePartida(props) {
         puntos = 0;
     }
     ///
+      ///
+      let carta1 = props.carta1;
+      if (typeof props.puncarta1tos === 'undefined') {
+        carta1 = null;
+      }
+      ///
+        ///
+    let carta2 = props.carta1puntos;
+    if (typeof props.carta2 === 'undefined') {
+        carta2 = null;
+    }
+    ///
 
     let SuperState =
     {
@@ -47,6 +62,8 @@ function crearStatePartida(props) {
         turnos,
         errores,
         puntos,
+        carta1,
+        carta2,
     }
 
     
