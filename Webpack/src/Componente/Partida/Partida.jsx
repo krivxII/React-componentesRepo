@@ -3,7 +3,7 @@ import { hot } from "react-hot-loader";
 import { crearStatePartida, crearTablaEstadisticas, crearCarta } from "./logic/partidaGenerator.jsx"
 import { flip } from "./logic/partidaAccions"
 import  "./partida.css"
-import Card from '../Carta/Card.jsx'
+
 
 
 function Partida(props) {

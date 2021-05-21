@@ -1,6 +1,6 @@
 import React, { useState }  from 'react';
 import ReactDOM from 'react-dom';
-import Partida from "./Partida.jsx"
+import Partida from "./Componente/Partida/Partida.jsx"
 
 
 ReactDOM.render(
