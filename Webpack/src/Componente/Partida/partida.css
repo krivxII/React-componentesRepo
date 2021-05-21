@@ -1,6 +1,12 @@
+.table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
 table, th, td {
     border: 1px solid black;
   }
-  .cardContainer {
+.cardContainer {
     margin: 5px;
   }

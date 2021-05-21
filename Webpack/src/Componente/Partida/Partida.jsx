@@ -18,7 +18,7 @@ console.log(Object.entries(SuperState.cartas))
        <span>
         {Object.entries(SuperState.cartas).map((carta, i) => <button key={i} onClick={() => { flip(carta,SuperState,setSuperState) }}>{carta[1].value}</button>)}
       </span>
-      <div className={"cardContainer"}>
+      <div className={"table"}>
       {crearCarta(SuperState,flip,setSuperState)}
       </div>
       <pre>
