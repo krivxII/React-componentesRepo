@@ -2,7 +2,6 @@ import React from 'react'
 import  './card.css'
 
 const Card = ({carta,flip,SuperState,setSuperState}) => {
-console.log(SuperState)
   return (
     <span className={"card"}  onClick={() => { flip(carta,SuperState,setSuperState)}} >
       <span className={"cardNumber"}> {SuperState.cartas[carta[0]].flip ?   carta[1].value.toString()  : ' ' }</span>

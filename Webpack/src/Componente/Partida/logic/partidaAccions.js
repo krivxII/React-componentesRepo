@@ -12,7 +12,7 @@ function flip(carta, SuperState, setSuperState) {
 
   }
   if (SuperState.cartasVolteadas === 1) {
-    if (!(SuperState.carta1.id === SuperState.cartas[carta[0]].id)) {
+    
       let newState = { ...SuperState };
       newState.carta2 = newState.cartas[carta[0]];
       newState.cartas[carta[0]].flip = !newState.cartas[carta[0]].flip;
@@ -23,11 +23,11 @@ function flip(carta, SuperState, setSuperState) {
         newState.carta1.find = 1;
         newState.carta2.find = 1;
       }
-      else newState.puntos -= 1;
+      else newState.vidas -= 1;
 
       setSuperState(newState)
-    }
-    else console.log("misma carta");
+    
+    
   }
   if (SuperState.cartasVolteadas > 1) {
     let newState = { ...SuperState };
