@@ -67,12 +67,17 @@ function crearStatePartida(props) {
         cartasRamdon = shuffle(Object.entries(JSON.parse(JSON.stringify(cartas))))
     }
     ///
-
+    let paresRestantes = props.paresRestantes;
+    if (typeof props.paresRestantes === 'undefined') {
+        paresRestantes = cartasRamdon.length/2;
+    }
+    ///
     let SuperState =
     {
         jugador,
         IdPartida,
         vidas,
+        paresRestantes,
         cartas,
         cartasVolteadas,
         cartasRamdon,

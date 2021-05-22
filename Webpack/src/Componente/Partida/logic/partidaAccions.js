@@ -5,9 +5,10 @@ function flip(carta, SuperState, setSuperState) {
   
   if (SuperState.cartasVolteadas === 0) {
     let newState = { ...SuperState };
-    newState.carta1 = newState.cartas[carta[0]];
+    newState.carta1 = newState.cartas[carta[0]];newState.carta1 = newState.cartas[carta[0]];
     newState.cartas[carta[0]].flip = !newState.cartas[carta[0]].flip;
     newState.cartasVolteadas++;
+    newState.turnos++;
     setSuperState(newState)
 
   }
@@ -17,9 +18,11 @@ function flip(carta, SuperState, setSuperState) {
       newState.carta2 = newState.cartas[carta[0]];
       newState.cartas[carta[0]].flip = !newState.cartas[carta[0]].flip;
       newState.cartasVolteadas++;
+      newState.turnos++;
 
       if (newState.carta1.value === newState.carta2.value){
         newState.puntos += 1;
+        newState.paresRestantes -= 1;
         newState.carta1.find = 1;
         newState.carta2.find = 1;
       }
@@ -32,11 +35,13 @@ function flip(carta, SuperState, setSuperState) {
   if (SuperState.cartasVolteadas > 1) {
     let newState = { ...SuperState };
     if(newState.carta1.find === 0){
-
       newState.carta1.flip = false;
       newState.carta2.flip = false;
     }
-    newState.cartasVolteadas = 0;
+    newState.carta1 = newState.cartas[carta[0]];newState.carta1 = newState.cartas[carta[0]];
+    newState.cartas[carta[0]].flip = !newState.cartas[carta[0]].flip;
+    newState.cartasVolteadas = 1;
+    newState.turnos++;
     setSuperState(newState)
   }
 };

@@ -29,26 +29,33 @@ function Partida(props) {
 
   return (
     <div>
-      {crearTablaEstadisticas(SuperState)}
-      <span>
-        {Object.entries(SuperState.cartas).map((carta, i) => <button key={i} onClick={() => { flip(carta, SuperState, setSuperState) }}>{carta[1].value}</button>)}
+       <span style={{maxWidth: "600px", display:"inline-block"}}>
+          {crearTablaEstadisticas(SuperState)}
+          <div className={"table"}>
+             {crearCartas(SuperState, onClickW, setSuperState)}
+          </div>
+          <span>
+            {Object.entries(SuperState.cartas).map((carta, i) => <button key={i} onClick={() => { flip(carta, SuperState, setSuperState) }}>{carta[1].value}</button>)}
+          </span>
+       </span>
+
+
+      <span style={{maxWidth: "600px",maxHeight:"409px", display:"inline-block", overflow: "scroll",}}>
+          <pre>
+            {JSON.stringify(rest, null, 1)}
+          </pre>
+          <pre>
+            {JSON.stringify(carta1, null, 1)}
+          </pre>
+          <pre>
+            {JSON.stringify(carta2, null, 1)}
+          </pre>
+          <pre>
+            {JSON.stringify(cartas, null, 1)}
+          </pre>
       </span>
-      <pre>
-        {JSON.stringify(rest, null, 1)}
-      </pre>
-      <pre>
-        {JSON.stringify(carta1, null, 1)}
-      </pre>
-      <pre>
-        {JSON.stringify(carta2, null, 1)}
-      </pre>
-      <div className={"table"}>
-        {crearCartas(SuperState, onClickW, setSuperState)}
-      </div>
-      <pre>
-        {JSON.stringify(cartas, null, 1)}
-      </pre>
     </div>
+
   )
 }
 
