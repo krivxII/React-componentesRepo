@@ -17,10 +17,10 @@ function crearStatePartida(props) {
     if (typeof props.cartas === 'undefined') {
         cartas = {};
         for (let i = 0; i <= 8; i++) {
-            cartas[i]= {id: i, value: i+1, flip: 0 };
+            cartas[i]= {id: i, value: i+1, flip: 0 , find: 0 };
         }
         for (let i = 8; i <= 15; i++) {
-            cartas[i]= {id: i, value: i-7, flip: 0 };
+            cartas[i]= {id: i, value: i-7, flip: 0, find: 0  };
         }
     }
     ///
@@ -62,6 +62,11 @@ function crearStatePartida(props) {
         vidas = 10;
     }
     ///
+    let cartasRamdon = props.cartasRamdon;
+    if (typeof props.cartasRamdon === 'undefined') {
+        cartasRamdon = shuffle(Object.entries(JSON.parse(JSON.stringify(cartas))))
+    }
+    ///
 
     let SuperState =
     {
@@ -70,6 +75,7 @@ function crearStatePartida(props) {
         vidas,
         cartas,
         cartasVolteadas,
+        cartasRamdon,
         turnos,
         errores,
         puntos,
@@ -108,11 +114,20 @@ function crearTablaEstadisticas(SuperState){
     return element
 }
 
-function crearCarta(SuperState,flip,setSuperState){
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    console.log("sdsds")
+    return array
+  }
+
+function crearCartas(SuperState,flip,setSuperState){
 
     return (
        
-        Object.entries(SuperState.cartas)
+     SuperState.cartasRamdon
         .map((carta, i) => {
          
             return (<Card 
@@ -133,4 +148,4 @@ function crearCarta(SuperState,flip,setSuperState){
 
 
 
-export {crearStatePartida, crearTablaEstadisticas, crearCarta }
+export {crearStatePartida, crearTablaEstadisticas, crearCartas }

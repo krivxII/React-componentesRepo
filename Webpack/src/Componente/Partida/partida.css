@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  max-width: 300px;
 }
 
 table, th, td {
     border: 1px solid black;
   }
 .cardContainer {
+  
     margin: 5px;
   }
