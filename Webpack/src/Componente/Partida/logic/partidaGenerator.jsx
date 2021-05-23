@@ -98,19 +98,22 @@ function crearTablaEstadisticas(SuperState){
         <tbody>
         <tr>
           <td>
-      Jugador: {SuperState.jugador}
+      Jugador: {SuperState.jugador} 
           </td>
           <td>
-     Turno: {SuperState.turnos}
+     Turno: {SuperState.turnos} 
           </td>
           <td>
-      Errores: {SuperState.errores}
+      Errores: {SuperState.errores}  
           </td>
           <td>
-      Puntos: {SuperState.puntos}
+      Puntos: {SuperState.puntos} 
           </td>
           <td>
-      vidas: {SuperState.vidas}
+      vidas: {SuperState.vidas} 
+          </td>
+          <td>
+      Pares restantes: {SuperState.paresRestantes} 
           </td>
         </tr>
         </tbody>
