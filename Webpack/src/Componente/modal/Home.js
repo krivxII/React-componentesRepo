@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Modal from './Modal';
+import Modal from './Modal.jsx';
 
 class Home extends Component {
     state = {

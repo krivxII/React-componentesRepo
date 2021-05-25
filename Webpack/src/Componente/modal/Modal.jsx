@@ -18,7 +18,7 @@ class Modal extends React.Component {
         return (
             <section className="modal-container" id="modal">
                 <div className="modal-content">
-                    <h1>Notify Me</h1>
+                    <h1>{this.props.mensaje}</h1>
                     <button onClick={this.onClose}>Close Modal</button>
                 </div>
             </section>
