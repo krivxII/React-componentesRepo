@@ -15,7 +15,6 @@ export default function AuthExample() {
     <ProvideAuth>
       <Router>
         <div>
-          <AuthButton />
 
           <ul>
             <li>
@@ -26,6 +25,7 @@ export default function AuthExample() {
             </li>
           </ul>
 
+          <AuthButton />
           <Switch>
             <Route path="/public">
               <PublicPage />

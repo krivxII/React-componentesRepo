@@ -25,10 +25,10 @@ const fakeAuth = {
 export default function useProvideAuth() {
     const [user, setUser] = useState(null);
   
-    const signin = cb => {
+    const signin = callBack => {
       return fakeAuth.signin(() => {
         setUser("user");
-        cb();
+        callBack();
       });
     };
   

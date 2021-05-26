@@ -7,21 +7,20 @@ import {
 
 
 export default function PrivateRoute({ children, ...rest }) {
-    let auth = useContext(authContext);
+    let authContex = useContext(authContext);
 
-
- 
-    return (
-      <Route 
-          {...rest} //Aca se le pasa la ruta
-          render={({ location }) =>
-            auth.user ? 
+    function miRender({location}){
+   return(   authContex.user ? 
             (children)
             :
             (<Redirect to={ { pathname: "/login", state: { from: location } } }/>)
-            }
+          )
+    }
+
+    return (
+      <Route {...rest} /*Aca se le pasa la ruta*/ render={miRender}
       />
     );
-
-    
   }
+
+  ///Falta entender este componente
