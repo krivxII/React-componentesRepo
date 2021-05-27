@@ -40,7 +40,7 @@ useEffect(()=>{
   }
 ///////////////////////////////////////
   return (
-      <div style={{ maxHeight: "409px" }}>
+      <div>
         <span className={"contenedor"}>
           {crearTablaEstadisticas(SuperState)}
           <div className={"table"}>
@@ -50,7 +50,7 @@ useEffect(()=>{
         {SuperState.vidas === 0 ? (<Modal open={open} onClose={openModal} mensaje="perdiste"></Modal>) : null}
         {SuperState.paresRestantes === 0 ? <Modal open={open} onClose={openModal} mensaje="ganaste"></Modal> : null}
         { !((SuperState.vidas === 0)||(SuperState.paresRestantes === 0)) ? (<button onClick={ () => {  setSuperState(newPartida(SuperState)); onClicFlag++;
-  setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000) }}>yeyeyea</button>) : null } 
+        setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000) }}>yeyeyea</button>) : null } 
        
 
       </div>

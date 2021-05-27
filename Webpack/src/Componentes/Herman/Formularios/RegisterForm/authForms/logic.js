@@ -15,11 +15,10 @@ async function registrar(nombre, usuario, contraseña) {
         redirect: 'follow'
     };
 
-    await fetch("https://6fra5t373m.execute-api.eu-west-1.amazonaws.com/development//users/johndoe", requestOptions)
-        .then(response => response.text())
-        .then(result => console.log(result))
-        .catch(error => console.log('error', error));
-
+    return await fetch("https://6fra5t373m.execute-api.eu-west-1.amazonaws.com/development/users/johndoe", requestOptions)
+    
+        
+    
 }
 
 export {registrar};

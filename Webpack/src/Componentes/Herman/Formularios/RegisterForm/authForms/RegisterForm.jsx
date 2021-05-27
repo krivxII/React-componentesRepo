@@ -16,7 +16,7 @@ function App() {
   const handleSubmit = async event => {
     event.preventDefault();
     setSubmitting(true);
-    registrar(formData.name,formData.username,formData.pass)
+   console.log(await registrar(formData.name,formData.username,formData.pass))
     setTimeout(() => {
       setSubmitting(false);
     }, 3000);

@@ -12,7 +12,7 @@ export default function LoginPage(props) {
   
     let { from } = location.state || { from: { pathname: "/" } };
     let login = () => {
-      auth.signin(() => {
+      auth.signout(() => {
         history.replace(from);
       });
     };
@@ -23,7 +23,7 @@ export default function LoginPage(props) {
         (from.pathname==="/") ? "" : (<p>Ya iniciaste session {from.pathname}</p>)
         }
         {props.children}
-        <button onClick={login}>Log in</button>
+        <button onClick={login}>Log out</button>
       </div>
     );
   }
