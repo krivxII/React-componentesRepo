@@ -49,9 +49,11 @@ useEffect(()=>{
         </span>
         {SuperState.vidas === 0 ? (<Modal open={open} onClose={openModal} mensaje="perdiste"></Modal>) : null}
         {SuperState.paresRestantes === 0 ? <Modal open={open} onClose={openModal} mensaje="ganaste"></Modal> : null}
-        { !((SuperState.vidas === 0)||(SuperState.paresRestantes === 0)) ? (<button onClick={ () => {  setSuperState(newPartida(SuperState)); onClicFlag++;
-        setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000) }}>yeyeyea</button>) : null } 
-       
+        
+        <div className={"lebutton"}>
+        { ((SuperState.vidas === 0)||(SuperState.paresRestantes === 0)) ? (<button onClick={ () => {  setSuperState(newPartida(SuperState)); onClicFlag++;
+        setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000) }}>Nueva partida</button>) : null } 
+        </div>
 
       </div>
   )

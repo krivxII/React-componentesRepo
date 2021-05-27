@@ -36,3 +36,11 @@ table, th, td {
   
     margin: 5px;
   }
+
+  .lebutton{
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding-top: 20px;
+  }
