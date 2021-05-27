@@ -5,10 +5,10 @@ import {authContext} from "../contex/authContext.js"
 export default function AuthButton() {
     let history = useHistory();
     let auth = useContext(authContext);
-  
+   
     return auth.user ? (
       <p>
-        Welcome!{" "}
+        Welcome!{" "+auth.user+" "}
         <button
           onClick={() => {
             auth.signout(() => history.push("/"));

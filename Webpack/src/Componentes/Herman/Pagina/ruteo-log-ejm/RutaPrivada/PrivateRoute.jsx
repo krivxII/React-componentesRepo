@@ -13,7 +13,7 @@ export default function PrivateRoute({ children, ...rest }) {
    return(   authContex.user ? 
             (children)
             :
-            (<Redirect to={ { pathname: "/login", state: { from: location } } }/>)
+            (<Redirect to={ { pathname: "/registro", state: { from: location } } }/>)
           )
     }
 

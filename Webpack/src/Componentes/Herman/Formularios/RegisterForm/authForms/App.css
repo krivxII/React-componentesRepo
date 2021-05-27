@@ -1,0 +1,14 @@
+.wrapper {
+    padding: 5px 20px;
+    width: 30%;
+    
+    display: inline-block;
+}
+
+.wrapper fieldset {
+    margin: 20px 0;
+}
+
+.spans {
+    max-width: 10000000px;
+}

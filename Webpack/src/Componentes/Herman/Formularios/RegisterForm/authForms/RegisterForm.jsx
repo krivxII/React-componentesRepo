@@ -31,13 +31,15 @@ function App() {
 
   return(
     <div className="wrapper">
+
       <h1>Registrate</h1>
       { formData.name ? formData.name : "no existes"}
       { formData.username ? formData.username : "no existes"}
       { formData.pass ? formData.name : "no existes"}
       
-      {submitting &&
-        <div>Submtting Form...</div>
+      {submitting 
+      &&
+      <div>Submtting Form...</div>
       }
 
 
@@ -54,6 +56,8 @@ function App() {
         </fieldset>
         <button type="submit">Submit</button>
       </form>
+
+      
     </div>
   )
 }

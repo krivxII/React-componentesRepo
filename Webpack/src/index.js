@@ -1,9 +1,8 @@
 import React, { useState }  from 'react';
 import ReactDOM from 'react-dom';
-import Partida from "./Componente/Partida/Partida.jsx"
-
+import App from './Componentes/Herman/Pagina/ruteo-log-ejm/App.jsx';
 
 ReactDOM.render(
- [ <Partida key={1} />,   ],
+ [ <App key={1} />,   ],
   document.getElementById('root')
 );

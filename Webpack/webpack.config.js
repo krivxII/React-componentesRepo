@@ -11,6 +11,7 @@ module.exports = {
    
   
   },
+  devtool: 'inline-source-map',
   /////////////////////////////////////////////////
   plugins: [
     new HtmlWebpackPlugin({
@@ -40,7 +41,7 @@ module.exports = {
    *   publicPath: "/":  da un erro en local, funciona cuando sirves el archivo desde un servidor
        publicPath: "": 
    */
-   publicPath: "./", 
+   publicPath: "/", 
   
   },
 

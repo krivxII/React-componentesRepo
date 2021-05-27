@@ -22,4 +22,4 @@ async function registrar(nombre, usuario, contraseña) {
 
 }
 
-export {registrar}
+export {registrar};

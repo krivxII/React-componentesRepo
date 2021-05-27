@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import {authContext} from "../contex/authContext"
 
-export default function LoginPage() {
+export default function LoginPage(props) {
     let history = useHistory();
     let location = useLocation();
     let auth = useContext(authContext);
@@ -19,7 +19,10 @@ export default function LoginPage() {
   
     return (
       <div>
-        <p>You must log in to view the page at {from.pathname}</p>
+        {
+        (from.pathname==="/") ? "" : (<p>Ya iniciaste session {from.pathname}</p>)
+        }
+        {props.children}
         <button onClick={login}>Log in</button>
       </div>
     );
