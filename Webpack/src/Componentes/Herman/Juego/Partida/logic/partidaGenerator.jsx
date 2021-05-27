@@ -31,7 +31,7 @@ function crearStatePartida(props) {
     ///
     let turnos = props.turnos;
     if (typeof props.turnos === 'undefined') {
-        turnos = 0;
+        turnos = -1;
     }
     ///
     let errores = props.errores;
@@ -51,7 +51,7 @@ function crearStatePartida(props) {
     }
     ///
     ///
-    let carta2 = props.carta1puntos;
+    let carta2 = props.carta2;
     if (typeof props.carta2 === 'undefined') {
         carta2 = null;
     }
@@ -72,8 +72,8 @@ function crearStatePartida(props) {
         paresRestantes = cartasRamdon.length / 2;
     }
     ///
-    let SuperState =
-    {
+   
+    return {
         jugador,
         IdPartida,
         vidas,
@@ -89,7 +89,7 @@ function crearStatePartida(props) {
     }
 
 
-    return SuperState;
+    return 
 }
 
 function newPartida(props) {
@@ -97,68 +97,57 @@ function newPartida(props) {
     let jugador = props.jugador;
  
     let IdPartida = props.IdPartida+1;
+
+    let cartasVolteadas = 0;
   
-    let cartas = props.cartas;
-    if (typeof props.cartas === 'undefined') {
-        cartas = {};
+
+        let cartas = {};
         for (let i = 0; i <= 8; i++) {
             cartas[i] = { id: i, value: i + 1, flip: 1, find: 0 };
         }
         for (let i = 8; i <= 15; i++) {
             cartas[i] = { id: i, value: i - 7, flip: 1, find: 0 };
         }
-    }
+    
     ///
-    let cartasVolteadas = props.cartasVolteadas;
-    if (typeof props.cartasVolteadas === 'undefined') {
-        cartasVolteadas = 0;
-    }
+
+
+       let turnos = -1;
+    
     ///
-    let turnos = props.turnos;
-    if (typeof props.turnos === 'undefined') {
-        turnos = 0;
-    }
+
+      let  errores = 0;
+    
     ///
-    let errores = props.errores;
-    if (typeof props.errores === 'undefined') {
-        errores = 0;
-    }
-    ///
-    let puntos = props.puntos;
-    if (typeof props.puntos === 'undefined') {
-        puntos = 0;
-    }
+
+       let puntos = 0;
+    
     ///
     ///
-    let carta1 = props.carta1;
-    if (typeof props.puncarta1tos === 'undefined') {
-        carta1 = null;
-    }
+
+      let carta1 = null;
+    
     ///
     ///
-    let carta2 = props.carta1puntos;
-    if (typeof props.carta2 === 'undefined') {
-        carta2 = null;
-    }
+ 
+      let  carta2 = null;
+    
     ///
     ///
-    let vidas = props.vidas;
-    if (typeof props.vidas === 'undefined') {
-        vidas = 10;
-    }
+
+      let  vidas = 10;
+    
     ///
-    let cartasRamdon = props.cartasRamdon;
-    if (typeof props.cartasRamdon === 'undefined') {
-        cartasRamdon = shuffle(Object.entries(JSON.parse(JSON.stringify(cartas))))
-    }
+
+     let   cartasRamdon = shuffle(Object.entries(JSON.parse(JSON.stringify(cartas))))
+    
     ///
-    let paresRestantes = props.paresRestantes;
-    if (typeof props.paresRestantes === 'undefined') {
-        paresRestantes = cartasRamdon.length / 2;
-    }
+
+      let  paresRestantes = cartasRamdon.length / 2;
+    
     ///
-    let SuperState =
-    {
+    
+    return {
         jugador,
         IdPartida,
         vidas,
@@ -174,7 +163,7 @@ function newPartida(props) {
     }
 
 
-    return SuperState;
+ 
 }
 
 function crearTablaEstadisticas(SuperState) {
@@ -199,6 +188,9 @@ function crearTablaEstadisticas(SuperState) {
                     </td>
                     <td>
                         Pares restantes: {SuperState.paresRestantes}
+                    </td>
+                    <td>
+                        Partida: {SuperState.IdPartida}
                     </td>
                 </tr>
             </tbody>
@@ -240,4 +232,4 @@ function crearCartas(SuperState, flip, setSuperState) {
 
  
 
-export { crearStatePartida, crearTablaEstadisticas, crearCartas }
+export { crearStatePartida, crearTablaEstadisticas, crearCartas, newPartida }

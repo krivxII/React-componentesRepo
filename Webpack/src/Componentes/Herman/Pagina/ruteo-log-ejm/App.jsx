@@ -16,6 +16,7 @@ import RegisterForm from "../../Formularios/RegisterForm/authForms/RegisterForm.
 import SessionForm from "../../Formularios/RegisterForm/authForms/LoginForm.jsx"
 import "./App.css"
 import {authContext}  from "./contex/authContext.js"
+import Juego from "../../Juego/Partida/Partida.jsx"
 
 export default function AuthExample() {
   const auth = useContext(authContext);
@@ -26,7 +27,8 @@ export default function AuthExample() {
         <Navbar/>
 
          
-         
+         <div className="body">
+
           <Switch>
             
             <NonPrivateRoute path="/registro">
@@ -45,7 +47,8 @@ export default function AuthExample() {
 
 
             <PrivateRoute path="/juego">
-              <ProtectedPage />
+              <Juego></Juego>
+             { /*<ProtectedPage />*/}
             </PrivateRoute>
            
             <Route path="/">
@@ -57,6 +60,7 @@ export default function AuthExample() {
 
           </Switch>
 
+</div>
           <AuthButton />
       
       </Router>

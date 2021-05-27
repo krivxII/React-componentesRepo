@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { hot } from "react-hot-loader";
-import { crearStatePartida, crearTablaEstadisticas, crearCartas } from "./logic/partidaGenerator.jsx"
+import { crearStatePartida, crearTablaEstadisticas, crearCartas,newPartida } from "./logic/partidaGenerator.jsx"
 import { flip, flipAllCards } from "./logic/partidaAccions"
 import "./partida.css"
 import Modal from '../modal/Modal.jsx';
@@ -10,17 +10,21 @@ function Partida(props) {
 
   const [SuperState, setSuperState] = useState(crearStatePartida(props));
   const [open, setOpen] = useState(true);
-
+const {cartas,...rest}={SuperState}
 
 
 useEffect(()=>{
-  onClicFlag++;
-  setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000)
-},[]);
+  if(SuperState.turnos===-1){
+    onClicFlag++;  
+    SuperState.turnos++;
+    setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000)
+  }
+});
 
 
 
   function openModal() {
+    
     setOpen(!open);
   };
 
@@ -45,14 +49,15 @@ useEffect(()=>{
         </span>
         {SuperState.vidas === 0 ? (<Modal open={open} onClose={openModal} mensaje="perdiste"></Modal>) : null}
         {SuperState.paresRestantes === 0 ? <Modal open={open} onClose={openModal} mensaje="ganaste"></Modal> : null}
+        { !((SuperState.vidas === 0)||(SuperState.paresRestantes === 0)) ? (<button onClick={ () => {  setSuperState(newPartida(SuperState)); onClicFlag++;
+  setTimeout(()=>{flipAllCards(SuperState,setSuperState)}, 3000) }}>yeyeyea</button>) : null } 
+       
 
       </div>
   )
 }
 
 export default (hot)(module)(Partida);
-
-
 
 
 /*
@@ -88,3 +93,6 @@ const { cartas, cartasRamdon, carta1, carta2, ...rest } = { ...SuperState }
         </span>
 
 */
+
+
+

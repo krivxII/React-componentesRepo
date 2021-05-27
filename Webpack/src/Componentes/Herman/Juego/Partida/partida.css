@@ -1,12 +1,17 @@
 html,
 body {
+  height: 90%;
+}
+.root{
   height: 100%;
 }
-body {
+.body {
   background: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+  width: 100%;
 }
 .table {
   display: flex;

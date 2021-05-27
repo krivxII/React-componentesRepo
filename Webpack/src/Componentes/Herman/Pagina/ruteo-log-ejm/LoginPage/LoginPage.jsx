@@ -18,7 +18,7 @@ export default function LoginPage(props) {
     };
   
     return (
-      <div>
+      <div style={{width: "100%", maxWidth: "700px", alignItems: "center"}}>
         {
         (from.pathname==="/") ? "" : (<p>Para poder jugar se debe iniciar session {from.pathname}</p>)
         }
