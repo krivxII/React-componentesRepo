@@ -15,8 +15,11 @@ async function registrar(nombre, usuario, contraseña) {
         redirect: 'follow'
     };
 
-    return await fetch("https://6fra5t373m.execute-api.eu-west-1.amazonaws.com/development/users/johndoe", requestOptions)
+const response = await fetch("https://6fra5t373m.execute-api.eu-west-1.amazonaws.com/development/users/johndoe", requestOptions).then(res => res.json().then(data => ({ ok: res.ok, status: res.status, body: data })))
     
+console.log(response)
+
+    return response
         
     
 }

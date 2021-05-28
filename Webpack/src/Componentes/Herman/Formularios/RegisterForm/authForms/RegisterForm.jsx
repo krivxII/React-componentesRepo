@@ -13,13 +13,14 @@ const formReducer = (state, event) => {
 }
 const toastOpt={
   position: "top-right",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
   }
+
 
 
 function App() {
@@ -29,17 +30,19 @@ function App() {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    toast.dark("responsee.body.details", toastOpt );
     setSubmitting(true);
-    toast.dark('🦄 Wow so easy!', {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      });
-   // console.log(await registrar(formData.name,formData.username,formData.pass))
+    const responsee = await registrar(formData.name,formData.username,formData.pass)
+ 
+
+    if (500 > responsee.status > 399 )
+    {
+      console.log("hello")
+      toast.dark(responsee.body.details, toastOpt );
+    }
+    
+   
+
     setTimeout(() => {
       setSubmitting(false);
     }, 3000);
