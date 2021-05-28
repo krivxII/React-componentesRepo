@@ -53,6 +53,8 @@ function flip(carta, SuperState, setSuperState, openModal) {
   if (newState.paresRestantes < 1) {
     openModal()
   }
+
+  
   setSuperState(newState)
 
 

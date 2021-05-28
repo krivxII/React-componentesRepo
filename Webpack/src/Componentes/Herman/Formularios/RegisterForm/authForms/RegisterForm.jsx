@@ -1,6 +1,9 @@
 import React, { useReducer, useState } from 'react';
 import './App.css';
 import {registrar} from "./logic"
+import { ToastContainer, toast } from 'react-toastify';
+
+
 
 const formReducer = (state, event) => {
  return {
@@ -8,15 +11,35 @@ const formReducer = (state, event) => {
    [event.name]: event.value
  }
 }
+const toastOpt={
+  position: "top-right",
+autoClose: 5000,
+hideProgressBar: false,
+closeOnClick: true,
+pauseOnHover: true,
+draggable: true,
+progress: undefined,
+  }
+
 
 function App() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [submitting, setSubmitting] = useState(false);
 
+
   const handleSubmit = async event => {
     event.preventDefault();
     setSubmitting(true);
-   console.log(await registrar(formData.name,formData.username,formData.pass))
+    toast.dark('🦄 Wow so easy!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+   // console.log(await registrar(formData.name,formData.username,formData.pass))
     setTimeout(() => {
       setSubmitting(false);
     }, 3000);
@@ -57,7 +80,7 @@ function App() {
         <button type="submit">Submit</button>
       </form>
 
-      
+     
     </div>
   )
 }

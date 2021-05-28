@@ -17,6 +17,8 @@ import SessionForm from "../../Formularios/RegisterForm/authForms/LoginForm.jsx"
 import "./App.css"
 import {authContext}  from "./contex/authContext.js"
 import Juego from "../../Juego/Partida/Partida.jsx"
+import { ToastContainer, toast } from 'react-toastify';
+import  'react-toastify/dist/ReactToastify.css';
 
 export default function AuthExample() {
   const auth = useContext(authContext);
@@ -64,6 +66,7 @@ export default function AuthExample() {
           <AuthButton />
       
       </Router>
+      <ToastContainer/>
     </ProvideAuth>
   );
 }
