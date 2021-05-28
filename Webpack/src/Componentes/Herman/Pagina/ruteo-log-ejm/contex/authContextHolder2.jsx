@@ -1,17 +1,17 @@
 import React , {useEffect} from "react";
 import { authContext } from "./authContext";
 import useProvideAuth from "./authContexCreator"
+import ProvideAuth from "./authContextHolder.jsx"
 
 
-
-export default function ProvideAuth({ children }) {
-    const auth = useProvideAuth();
+export default function ProvideAuth2({ children }) {
+    
 
     return (
    
-      <authContext.Provider value={auth}>
+      <ProvideAuth>
         {children}
-      </authContext.Provider>
+      </ProvideAuth>
      
     );
   }

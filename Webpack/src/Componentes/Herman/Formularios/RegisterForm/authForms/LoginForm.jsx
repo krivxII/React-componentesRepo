@@ -9,7 +9,7 @@ const formReducer = (state, event) => {
  }
 }
 
-function App() {
+function LogginForm() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [submitting, setSubmitting] = useState(false);
 
@@ -58,4 +58,4 @@ function App() {
   )
 }
 
-export default App;
+export default LogginForm;

@@ -1,11 +1,11 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink,
+  useHistory,
 } from "react-router-dom";
-import ProvideAuth from "./contex/authContextHolder.jsx"
+import ProvideAuth2 from "./contex/authContextHolder2.jsx"
 import PrivateRoute from "./RutaPrivada/PrivateRoute.jsx"
 import NonPrivateRoute from "./RutaPrivada/NonPrivateRoute.jsx"
 import AuthButton from "./AuthButton/AuthButton.jsx"
@@ -17,13 +17,19 @@ import SessionForm from "../../Formularios/RegisterForm/authForms/LoginForm.jsx"
 import "./App.css"
 import {authContext}  from "./contex/authContext.js"
 import Juego from "../../Juego/Partida/Partida.jsx"
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import  'react-toastify/dist/ReactToastify.css';
 
+
+
+
+
 export default function AuthExample() {
-  const auth = useContext(authContext);
+  let auth = useContext(authContext);
+  let history = useHistory();
+
   return (
-    <ProvideAuth>
+    <ProvideAuth2>
       <Router>
        
         <Navbar/>
@@ -67,7 +73,7 @@ export default function AuthExample() {
       
       </Router>
       <ToastContainer/>
-    </ProvideAuth>
+    </ProvideAuth2>
   );
 }
 

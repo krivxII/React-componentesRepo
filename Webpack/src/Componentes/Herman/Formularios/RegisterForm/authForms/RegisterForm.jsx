@@ -1,7 +1,8 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState , useContext} from 'react';
 import './App.css';
 import {registrar} from "./logic"
-import { ToastContainer, toast } from 'react-toastify';
+import {authContext} from "../../../Pagina/ruteo-log-ejm/contex/authContext"
+import {  useHistory, } from "react-router-dom";
 
 
 
@@ -11,41 +12,19 @@ const formReducer = (state, event) => {
    [event.name]: event.value
  }
 }
-const toastOpt={
-  position: "top-right",
-  autoClose: 5000,
-  hideProgressBar: false,
-  closeOnClick: true,
-  pauseOnHover: true,
-  draggable: true,
-  progress: undefined,
-  }
 
 
 
 function App() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [submitting, setSubmitting] = useState(false);
-
+  let auth = useContext(authContext);
 
   const handleSubmit = async event => {
     event.preventDefault();
-    toast.dark("responsee.body.details", toastOpt );
     setSubmitting(true);
-    const responsee = await registrar(formData.name,formData.username,formData.pass)
- 
-
-    if (500 > responsee.status > 399 )
-    {
-      console.log("hello")
-      toast.dark(responsee.body.details, toastOpt );
-    }
-    
-   
-
-    setTimeout(() => {
-      setSubmitting(false);
-    }, 3000);
+    const responsee = await registrar(formData.name,formData.username,formData.pass,auth)
+    setSubmitting(false);
   }
 
   const handleChange = event => {

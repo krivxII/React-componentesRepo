@@ -1,11 +1,13 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {  useHistory, } from "react-router-dom";
 import {authContext} from "../contex/authContext.js"
-
+import {validarToken} from "../../../Formularios/RegisterForm/authForms/logic"
 export default function AuthButton() {
     let history = useHistory();
     let auth = useContext(authContext);
-   
+  
+    useEffect(()=>validarToken(auth,history),[]);
+
     return auth.user ? (
       
 
