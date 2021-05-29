@@ -20,7 +20,7 @@ function LogginForm() {
   const handleSubmit = async event => {
     event.preventDefault();
     setSubmitting(true);
-  
+
     const responsee = await  iniciarSession(formData.username,formData.pass,auth,history)
     setSubmitting(false);
   }
