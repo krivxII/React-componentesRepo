@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import {CrearUsuario,ObtenerUsuario} from "../../../Persistencia/persistencia"
 
 const toastOpt = {
     position: "top-right",
@@ -12,7 +13,7 @@ const toastOpt = {
 
 
 async function registrar(nombre, usuario, contraseña, auth, history) {
-
+    console.log("tratando de registrar un usuario nuevo en el sistema de auth")
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
@@ -33,27 +34,28 @@ async function registrar(nombre, usuario, contraseña, auth, history) {
 
     let mensaje;
 
-    if ((500 > response.status) && (response.status > 399)) {
+     if ((600 > response.status) && (response.status > 499)) {//500
+        mensaje = `Error: ${response.status}
+        -------------------------------
+        Mensaje: ${response.body.details}`
+        toast.dark(mensaje, toastOpt);
+        registrar(nombre, usuario, contraseña, auth, history)
+    }
+    else if ((500 > response.status) && (response.status > 399)) {//400
         mensaje = `Error: ${response.status}
           -------------------------------
           Mensaje: ${response.body.details}`;
         toast.dark(mensaje, toastOpt);
     }
-    else if ((600 > response.status) && (response.status > 499)) {
-        mensaje = `Error: ${response.status}
-          -------------------------------
-          Mensaje: ${response.body.details}`
-        toast.dark(mensaje, toastOpt);
-        registrar(nombre, usuario, contraseña, auth, history)
-    }
-    else if ((300 > response.status) && (response.status > 199)) {
+    else if ((300 > response.status) && (response.status > 199)) {//300
         mensaje = `Code: ${response.status}
           -------------------------------
           Bienvenido: ${response.body.firstName}
           -------------------------------
           Usuario ${response.body.username} creado `
         toast.dark(mensaje, toastOpt);
-        iniciarSession(usuario, contraseña, auth, history)
+        CrearUsuario(usuario,contraseña, auth, history,iniciarSession)
+      
     }
 
 
