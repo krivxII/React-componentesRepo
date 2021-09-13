@@ -2,7 +2,40 @@
 
 Esta guia esta complementada por lo leido en:
 
-##Dependencias instaladas
+## Dependencias instaladas
+
+### Webpack pakages
+
+- webpack-cli
+- webpack-dev-server
+
+### Webpack Loaders
+
+- style-loader
+- css-loader
+- babel-loader
+
+### webpack Plugins
+
+html-webpack-plugin
+
+### Babel pakages
+
+- babel/core
+- babel/cli
+- babel/preset-env
+- babel/preset-react
+- @babel/runtime
+- @babel/plugin-transform-runtime
+
+
+### React pakages
+
+- react
+- react-dom
+- react-hot-loader
+- react-router-dom
+
 
 ## Instalando webpack
 
@@ -15,7 +48,8 @@ npm install webpack-cli --save-dev
 ```
 
 - Creamos la carpeta src y dentro el archivo index.js
-- Creamos la carpeta dist y dentro index.html
+- Creamos la carpeta dist
+- Creamos la carpeta assets
 
 ---
 
@@ -90,14 +124,18 @@ npm install --save-dev html-webpack-plugin
 ahora modificamos webpack.config.js para agregar el plugging
 
 ```bash
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Output Management',
-    }),
-  ],
+ plugins: [
+  new HtmlWebpackPlugin({
+    title: 'Output Management',
+    template: "./assets/index.html",
+    inject: 'body',
+  }),
+],
 ```
 
 Ahora se crea la carpeta llamada assets y desde ahi se puede poner la plantilla de html que puede usar este plugging
+
+El html que se usara de plantilla va en la carpeta assets
 
 ---
 
