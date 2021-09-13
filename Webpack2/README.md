@@ -38,7 +38,7 @@ html-webpack-plugin
 
 ## Iniciar
 
-### Agregar manejadores de estilos:
+### Agregar manejadores de estilos
 
 1. ejecuta npm install --save-dev style-loader css-loader
 2. Agrega en webpack.config.js:
@@ -130,8 +130,10 @@ devServer: {
 
 Agregando Babel
 
-1- Ejecuta npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react
-2- En webpack.config.json agrega 
+1. Ejecuta npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/cli
+2. En webpack.config.json agrega
+
+```bash
 module: {
   rules: [
     {
@@ -141,13 +143,13 @@ module: {
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env', "@babel/preset-react"],
-         not// plugins: []
+          plugins: [],
         }
       }
     }
   ]
 }
-
+```
 
 ----
 
