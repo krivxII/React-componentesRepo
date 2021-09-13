@@ -11,8 +11,17 @@ module.exports = {
  plugins: [//pluggins instalados
   new HtmlWebpackPlugin({
     title: 'Output Management',
+  //  template: "./assets/index.html",
+  //  inject: 'body',
   }),
 ],
+mode: "development",
+
+devServer: {
+  historyApiFallback: true,
+  contentBase: path.join(__dirname, "dist/"),
+  hotOnly: true,
+},
 
 module: {
   rules: [

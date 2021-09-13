@@ -11,6 +11,7 @@ Ejecutamos
 ```bash
 npm init -y
 npm install webpack webpack-cli --save-dev
+npm install webpack-cli --save-dev
 ```
 
 - Creamos la carpeta src y dentro el archivo index.js
@@ -49,7 +50,8 @@ module.exports = {
 Para poder importar ccs e imagenes dentro de un archivo instalamos las siguientes dependencias
 
 ```bash
-npm install --save-dev style-loader css-loader
+npm install  css-loader --save-dev
+npm install  style-loader --save-dev
 ```
 
 Luego modificamos el archivo webpack.config.js
@@ -75,7 +77,7 @@ Luego modificamos el archivo webpack.config.js
 
 Ahora se pueden exportar imagenes desde .js
 
-----
+---
 
 ## Instalando HtmlWebpackPlugin
 
@@ -104,17 +106,59 @@ Ahora se crea la carpeta llamada assets y desde ahi se puede poner la plantilla 
 Ejecutamos
 
 ```bash
-npm install --save react react-dom
+npm install  react --save
+npm install  react-dom --save
+```
+
+---
+
+## Agregando y configurando devServer
+
+1. Ejecuta
+
+```bash
+npm install --save-dev webpack-dev-server 
+```
+
+2. Agrega en webpack.config.json
+
+```bash
+devServer: {
+    contentBase: './dist',
+  },
+```
+
+---
+
+## Agregando HMR
+
+1. Ejecutamos
+
+```bash
+npm install --save react-hot-loader
+```
+
+2. En webpack.config.js agregamos
+
+```bash
+  plugins: [new webpack.HotModuleReplacementPlugin()],
+  devServer: {
+    hotOnly: true
+  },
 ```
 
 ---
 
 ## Agregando Babel
 
-1. Ejecuta 
+1. Ejecuta
 
 ```bash
-npm install --save-dev babel-loader @babel/core @babel/preset-env @babel/preset-react @babel/cli
+npm install  babel-loader --save-dev
+npm install  @babel/core --save-dev
+npm install  @babel/preset-env --save-dev
+npm install  @babel/preset-react --save-dev
+npm install  @babel/cli --save-dev
 ```
 
 2. En webpack.config.json agrega
@@ -140,7 +184,8 @@ module: {
 3. Luego para arreglar el async se utiliza el siguiente plugging.
 
 ```bash
-npm install --save @babel/runtime
+npm install  @babel/runtime --save
+npm install  @babel/plugin-transform-runtime --save
 ```
 
 4. Agrega en webpack.config.json
