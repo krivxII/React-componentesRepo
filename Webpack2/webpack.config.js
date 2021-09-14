@@ -37,7 +37,7 @@ module.exports = {
     clean: true,
 
     /*publicPath
-    "./"   da un error en router 
+    "./"   da un error en react router router 
     "/"   da un error con aplicaciones locales usar con webpack router
     */
  

@@ -161,8 +161,9 @@ npm install --save-dev webpack-dev-server
 2. Agrega en webpack.config.json
 
 ```bash
-devServer: {
-    contentBase: './dist',
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, "dist/"),
   },
 ```
 
@@ -235,6 +236,7 @@ module: {
       use: {
         loader: 'babel-loader',
         options: {
+         "presets": ['@babel/preset-env', "@babel/preset-react"],
          "plugins": ["@babel/plugin-transform-runtime"],
         }
       }
